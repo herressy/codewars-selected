@@ -1,0 +1,19 @@
+# Sudoku Solution Validator
+# Write a function validSolution/ValidateSolution/valid_solution() that accepts a 2D array representing a Sudoku board, and returns true if it is a valid solution, or false otherwise. The cells of the sudoku board may also contain 0's, which will represent empty cells. Boards containing one or more zeroes are considered to be invalid solutions.
+
+# The board is always 9 cells by 9 cells, and every cell only contains integers from 0 to 9.
+
+
+def valid_solution(board):
+    solved = set(range(1, 10))
+    if [row for row in board if 0 in row]:
+        return False
+    if not all([set(row) == solved for row in board]):
+        return False
+    if not all({board[row][column] for row in range(9)} == solved for column in range(9)):
+        return False
+    for y in [0, 3, 6]:
+        for x in [0, 3, 6]:
+            if not set(board[y][x:x+3] + board[y+1][x:x+3] + board[y+2][x:x+3]) == solved:
+                return False
+    return True

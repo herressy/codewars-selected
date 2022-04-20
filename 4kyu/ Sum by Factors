@@ -1,0 +1,26 @@
+# Given an array of positive or negative integers
+
+# I = [i1,..,in]
+
+# you have to produce a sorted array P of the form
+
+# [ [p, sum of all ij of I for which p is a prime factor (p positive) of ij] ...]
+
+# P will be sorted by increasing order of the prime numbers.
+
+
+def prime_factors(lst):
+    factors = set()
+    for i in lst:
+        d = 2
+        while(d * d <= i):
+            while(i > 1):            
+                while i % d == 0:
+                    factors.add(d)
+                    i = i / d
+                d += 1
+    return factors
+
+def sum_for_list(lst):
+    primes = prime_factors([abs(x) for x in lst])
+    return sorted([[prime, sum(l for l in lst if not l % prime)] for prime in primes])
