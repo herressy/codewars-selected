@@ -1,0 +1,54 @@
+# In this kata, you will make a function that converts between camelCase, snake_case, and kebab-case.
+
+# You must write a function that changes to a given case. It must be able to handle all three case types:
+
+# py> change_case("snakeCase", "snake")
+# "snake_case"
+# py> change_case("some-lisp-name", "camel")
+# "someLispName"
+# py> change_case("map_to_all", "kebab")
+# "map-to-all"
+# py> change_case("doHTMLRequest", "kebab")
+# "do-h-t-m-l-request"
+# py> change_case("invalid-inPut_bad", "kebab")
+# None
+# py> change_case("valid-input", "huh???")
+# None
+# py> change_case("", "camel")
+# ""
+# Your function must deal with invalid input as shown, though it will only be passed strings. 
+# Furthermore, all valid identifiers will be lowercase except when necessary, in other words on word boundaries in camelCase.
+
+
+def change_case(identifier, targetCase):
+    if targetCase not in 'snakecamelkebab':
+        return None
+    for i in set(identifier):
+        if i.isupper():
+            if '_' in identifier or '-' in identifier:
+                return None
+        if '_' in identifier and '-' in identifier:
+            return None 
+    if targetCase == "snake":
+        if '-' not in identifier:
+            for i in set(identifier):
+                if i.isupper():
+                    identifier = identifier.replace(i, f"_{i.lower()}")
+            return identifier
+        else:
+             return identifier.replace('-', "_")
+    elif targetCase == "camel":
+        for x in '-_':
+            if x in identifier:
+                return identifier.split(x)[0] + ''.join([_.capitalize() for _ in identifier.split(x)[1:]])
+        return identifier
+    elif targetCase == 'kebab':
+        if '-' in identifier:
+            return identifier
+        elif '_' in identifier:
+            return identifier.replace('_', '-')
+        else:
+            for i in set(identifier):
+                if i.isupper():
+                    identifier = identifier.replace(i, f"-{i.lower()}")
+            return identifier
