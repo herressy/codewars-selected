@@ -1,0 +1,22 @@
+# You are at position [0, 0] in maze NxN and you can only move in one of the four cardinal directions 
+# (i.e. North, East, South, West). Return true if you can reach position [N-1, N-1] or false otherwise.
+
+# Empty positions are marked ..
+# Walls are marked W.
+# Start and exit positions are empty in all test cases.
+
+
+def path_finder(maze):
+    m = [[y for y in x] for x in maze.split('\n')]
+    l = len(m)
+    cache = [(0, 0)]
+    while cache:
+        x, y = cache.pop()
+        if m[x][y] == '.':
+            if (x, y) == (l-1, l-1):
+                return True
+            m[x][y] = '='
+            for x, y in [(x, y+1), (x, y-1), (x+1, y), (x-1, y)]:
+                if 0 <= x < l and 0 <= y < l:
+                    cache.append((x, y))
+    return False

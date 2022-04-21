@@ -1,0 +1,43 @@
+# Your task in order to complete this Kata is to write a function which formats a duration, 
+# given as a number of seconds, in a human-friendly way.
+
+# The function must accept a non-negative integer. If it is zero, it just returns "now". 
+# Otherwise, the duration is expressed as a combination of years, days, hours, minutes and seconds.
+
+# It is much easier to understand with an example:
+
+# * For seconds = 62, your function should return
+#     "1 minute and 2 seconds"
+# * For seconds = 3662, your function should return
+#     "1 hour, 1 minute and 2 seconds"
+
+# For the purpose of this Kata, a year is 365 days and a day is 24 hours.
+
+
+def format_duration(seconds):
+
+    if seconds == 0:
+        return 'now'
+
+    result = {}
+    final = {}
+
+    result["years"] = seconds // (86400*365)
+    result["days"] = (seconds % (86400*365)) // 86400
+    result["hours"] = (seconds % 86400) // 3600
+    result["minutes"] = (seconds % 3600) // 60
+    result["seconds"] = seconds % 60
+
+    for key in result:
+        if result[key] > 1:
+            final[key] = result[key]
+        elif result[key] == 1:
+            final[key.rstrip('s')] = result[key]
+
+    r = [f'{final[key]} {key}' for key in final]
+
+    if len(r) > 1:
+        return ', '.join(r[:-1]) + ' and ' + r[-1]
+
+    else:
+        return ''.join([f'{final[x]} {x}' for x in final])
