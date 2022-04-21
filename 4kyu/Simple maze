@@ -1,0 +1,47 @@
+# Kate constantly finds herself in some kind of a maze. Help her to find a way out!.
+
+# For a given maze and Kate's position find if there is a way out. Your function should return True or False.
+
+# Each maze is defined as a list of strings, where each char stays for a single maze "cell". ' ' (space) can be stepped on, 
+# '#' means wall and 'k' stays for Kate's starting position. Note that the maze may not always be square or even rectangular.
+
+# Kate can move left, up, right or down only.
+
+# There should be only one Kate in a maze. In any other case you have to throw an exception.
+
+# Example input
+# ['# ##',
+#  '# k#',
+#  '####']
+
+# Example output
+# True
+
+
+def find_kate(maze):
+    for x in range(len(maze)):
+        for y in range(len(maze[x])):
+            if maze[x][y] == 'k':
+                return x, y
+
+def has_exit(maze):
+    assert ''.join(maze).count('k') == 1
+    length = len(maze)
+    mlength = max(len(_) for _ in maze)
+    for i, _ in enumerate(maze):
+        if len(maze[i]) < mlength:
+            maze[i] += (mlength - len(maze[i])) * ' '
+    maze = [[x for x in i] for i in maze]
+    cache = [find_kate(maze)]
+    while cache:
+        x, y = cache.pop()
+        if 0 in [x, y] or y == len(maze[x]) - 1 or x == length - 1:
+            return True
+        for c, d in (x+1, y), (x, y+1), (x-1, y), (x, y-1):
+            try:
+                if maze[c][d] == ' ':
+                    cache.append((c, d))
+                    maze[c][d] = 'x'
+            except IndexError:
+                continue
+    return False
