@@ -1,0 +1,57 @@
+# This time we want to write calculations using functions and get the results. Let's have a look at some examples:
+
+# seven(times(five())) # must return 35
+# four(plus(nine())) # must return 13
+# eight(minus(three())) # must return 5
+# six(divided_by(two())) # must return 3
+# Requirements:
+
+# There must be a function for each number from 0 ("zero") to 9 ("nine")
+# There must be a function for each of the following mathematical operations: plus, minus, times, divided_by
+# Each calculation consist of exactly one operation and two numbers
+# The most outer function represents the left operand, the most inner function represents the right operand
+# Division should be integer division. For example, this should return 2, not 2.666666...:
+# eight(divided_by(three()))
+
+
+def zero(a = None):
+    return "0" if a == None else eval("0" + a)
+
+def one(a = None):
+    return "1" if a == None else eval("1" + a)
+
+def two(a = None):
+    return "2" if a == None else eval("2" + a)
+
+def three(a = None):
+    return "3" if a == None else eval("3" + a)
+
+def four(a = None):
+    return "4" if a == None else eval("4" + a)
+
+def five(a = None):
+    return "5" if a == None else eval("5" + a)
+
+def six(a = None):
+    return "6" if a == None else eval("6" + a)
+
+def seven(a = None):
+    return "7" if a == None else eval("7" + a)
+
+def eight(a = None):
+    return "8" if a == None else eval("8" + a)
+
+def nine(a = None):
+    return "9" if a == None else eval("9" + a)
+
+def plus(b = None):
+    return '+' + b
+
+def minus(b = None):
+    return '-' + b
+
+def times(b = None):
+    return '*' + b
+
+def divided_by(b = None):
+    return '//' + b

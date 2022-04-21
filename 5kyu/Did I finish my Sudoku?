@@ -1,0 +1,22 @@
+# Write a function done_or_not/DoneOrNot passing a board (list[list_lines]) as parameter. 
+# If the board is valid return 'Finished!', otherwise return 'Try again!'
+
+# Sudoku rules:
+
+# Complete the Sudoku puzzle so that each and every row, column, and region contains the numbers one through nine only once.
+
+
+SET_1_TO_9 = set(range(1, 10))
+
+def done_or_not(board):
+    for line in board:
+        if not set(line) == SET_1_TO_9:
+            return 'Try again!'
+    for column in range(9):
+        if not set(board[row][column] for row in range(9)) == SET_1_TO_9:
+            return 'Try again!'
+    for y in [0, 3, 6]:
+        for x in [0, 3, 6]:
+            if not set(board[y][x:x+3] + board[y+1][x:x+3] + board[y+2][x:x+3]) == SET_1_TO_9:
+                return 'Try again!'
+    return 'Finished!'

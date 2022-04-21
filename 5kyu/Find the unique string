@@ -1,0 +1,20 @@
+# There is an array of strings. All strings contains similar letters except one. Try to find it!
+
+# find_uniq([ 'Aa', 'aaa', 'aaaaa', 'BbBb', 'Aaaa', 'AaAaAa', 'a' ]) # => 'BbBb'
+# find_uniq([ 'abc', 'acb', 'bac', 'foo', 'bca', 'cab', 'cba' ]) # => 'foo'
+# Strings may contain spaces. Spaces are not significant, only non-spaces symbols matters. 
+# E.g. string that contains only spaces is like empty string.
+
+# It’s guaranteed that array contains more than 3 strings.
+
+
+def find_uniq(arr):
+    a = [_.lower() for _ in arr]
+    if set(a[0]) != set(a[1]) and set(a[1]) == set(a[2]):
+        return arr[0]
+    if set(a[-1]) != set(a[-2]) and set(a[-2]) == set(a[-3]):
+        return arr[-1]
+    for i in range(1, len(arr) - 1):
+        if set(a[i]) != set(a[i+1]):
+            if set(a[i]) != set(a[i-1]):
+                return arr[i]

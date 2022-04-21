@@ -18,6 +18,7 @@
 # True
 
 
+
 def find_kate(maze):
     for x in range(len(maze)):
         for y in range(len(maze[x])):

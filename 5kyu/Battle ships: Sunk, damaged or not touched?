@@ -1,0 +1,26 @@
+# https://www.codewars.com/kata/58d06bfbc43d20767e000074
+
+
+def damaged_or_sunk (board, attacks):
+    b = board[::-1]
+    a = [[x-1, y-1] for x, y in attacks]
+    result = {'sunk': 0,
+             'damaged': 0,
+             'not_touched': 0,
+             'points': 0}
+    ships = {}
+    damaged = {}
+    for y in range(len(b)):
+        for x in range(len(b[y])):
+            if b[y][x] != 0:
+                ships[b[y][x]] = ships.get(b[y][x], 0) + 1
+                if [x, y] in a:
+                    damaged[b[y][x]] = damaged.get(b[y][x], 0) + 1  
+    for k in damaged:
+        if damaged[k] == ships[k]:
+            result['sunk'] += 1
+        else:
+            result['damaged'] += 1
+    result['not_touched'] = len(ships) - len(damaged)
+    result['points'] = result['sunk'] + result['damaged']*0.5 - result['not_touched']
+    return result

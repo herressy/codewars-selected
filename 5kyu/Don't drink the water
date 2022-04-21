@@ -1,0 +1,36 @@
+# Given a two-dimensional array representation of a glass of mixed liquids, 
+# sort the array such that the liquids appear in the glass based on their density. 
+# (Lower density floats to the top) The width of the glass will not change from top to bottom.
+
+# ======================
+# |   Density Chart    |
+# ======================
+# | Honey   | H | 1.36 |
+# | Water   | W | 1.00 |
+# | Alcohol | A | 0.87 |
+# | Oil     | O | 0.80 |
+# ----------------------
+
+# [                            [
+#  ['H', 'H', 'W', 'O'],        ['O','O','O','O']
+#  ['W', 'W', 'O', 'W'],  =>    ['W','W','W','W']
+#  ['H', 'H', 'O', 'O']         ['H','H','H','H']
+#  ]                           ]
+ 
+# The glass representation may be larger or smaller. If a liquid doesn't fill a row, it floats to the top and to the left.
+
+
+d = {
+    'O': 1,
+    'A': 2,
+    'W': 3,
+    'H': 4
+}
+
+def separate_liquids(glass):
+    if not glass:
+        return []
+    l = len(glass[0])
+    g = [item for sublist in glass for item in sublist]
+    g.sort(key = lambda x: d[x])
+    return [g[x:x+l] for x in range(0, len(g), l)]

@@ -9,6 +9,7 @@
 # P will be sorted by increasing order of the prime numbers.
 
 
+
 def prime_factors(lst):
     factors = set()
     for i in lst:
