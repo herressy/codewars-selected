@@ -1,0 +1,19 @@
+# Create a function that returns the lowest product of 4 consecutive digits in a number given as a string.
+
+# This should only work if the number has 4 digits or more. If not, return "Number is too small".
+
+# Example
+# lowest_product("123456789") --> 24 (1x2x3x4)
+# lowest_product("35") --> "Number is too small"
+
+
+from numpy import prod
+
+def lowest_product(input):
+    p = []
+    if len(input) > 4:
+        for i, _ in enumerate(input[:-3]):
+            if input[i:i+4].isdigit():
+                p.append(prod(tuple(int(_) for _ in input[i:i+4])))
+        return min(p)
+    return "Number is too small"

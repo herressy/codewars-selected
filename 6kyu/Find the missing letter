@@ -1,0 +1,33 @@
+# Write a method that takes an array of consecutive (increasing) letters as input and that 
+# returns the missing letter in the array.
+
+# You will always get an valid array. And it will be always exactly one letter be missing. 
+# The length of the array will always be at least 2.
+# The array will always contain letters in only one case.
+
+# Example:
+
+# ['a','b','c','d','f'] -> 'e' ['O','Q','R','S'] -> 'P'
+
+# ["a","b","c","d","f"] -> "e"
+# ["O","Q","R","S"] -> "P"
+# (Use the English alphabet with 26 letters!)
+
+
+SMALL = tuple(x for x in 'abcdefghijklmnopqrstuvwxyz')
+BIG = tuple(x for x in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+
+def find_missing_letter(chars):
+    chindex = 0
+    dindex = 0
+    if chars[0] in SMALL:
+        chindex = SMALL.index(chars[0])
+        dindex = SMALL.index(chars[-1])
+        one = set(chars)
+        two = set(SMALL[chindex:dindex+1])
+    if chars[0] in BIG:
+        chindex = BIG.index(chars[0])
+        dindex = BIG.index(chars[-1])
+        one = set(chars)
+        two = set(BIG[chindex:dindex+1])
+    return ''.join(two.difference(one))

@@ -1,0 +1,19 @@
+ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+def play_pass(s, n):
+    s = s.upper()
+    result = ''
+    for _, i in enumerate(s):
+        if i.isalpha():
+            ind = ALPHABET.index(i) + n
+            if ind >= 26:
+                ind -= 26
+            if not _ % 2:
+                result += ALPHABET[ind]
+            else:
+                result += ALPHABET[ind].lower()
+        elif i.isdigit():
+            result += str(9 - int(i))
+        else:
+            result += i
+    return result[::-1]

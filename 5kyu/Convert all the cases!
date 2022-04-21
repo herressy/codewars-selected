@@ -20,7 +20,6 @@
 # Furthermore, all valid identifiers will be lowercase except when necessary, in other words on word boundaries in camelCase.
 
 
-def change_case(identifier, targetCase):
     if targetCase not in 'snakecamelkebab':
         return None
     for i in set(identifier):

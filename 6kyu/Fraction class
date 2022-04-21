@@ -1,0 +1,37 @@
+# You are provided with a skeleton of the class 'Fraction', which accepts two arguments (numerator, denominator).
+
+# EXAMPLE:
+
+# fraction1 = Fraction(4, 5)
+# Your task is to make this class string representable, 
+# and addable while keeping the result in the minimum representation possible.
+
+# EXAMPLE:
+
+# print (fraction1 + Fraction(1, 8))
+# outputs: 37/40
+
+# NB: DON'T use the built_in class 'fractions.Fraction'
+
+
+import math
+
+class Fraction:
+
+    def __init__(self, numerator, denominator):
+        l = math.gcd(int(numerator), int(denominator))
+        self.top = int(numerator / l)
+        self.bottom = int(denominator / l)
+        
+    def __eq__(self, other):
+        first_num = self.top * other.bottom
+        second_num = other.top * self.bottom
+        return first_num == second_num
+        
+    def __add__(self, other):
+        g = abs(self.bottom*other.bottom) // math.gcd(self.bottom, other.bottom)
+        top = (g/self.bottom)*self.top + (g/other.bottom)*other.top
+        return Fraction(top, g)
+    
+    def __repr__(self):
+        return f'{self.top}/{self.bottom}'
