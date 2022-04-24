@@ -26,11 +26,11 @@
 
 
 DIRECTIONS = {
-        'SOUTH': 'NORTH',
-        'NORTH': 'SOUTH',
-        'WEST': 'EAST',
-        'EAST': 'WEST'
-    }
+    'SOUTH': 'NORTH',
+    'NORTH': 'SOUTH',
+    'WEST': 'EAST',
+    'EAST': 'WEST'
+}
 
 def dirReduc(arr):
     while True:
