@@ -24,8 +24,6 @@
 # * possible in sense of: the observed PIN itself and all variations considering the adjacent digits
 
 
-
-def get_pins(observed):
     keyboard = {
         '1': '124',
         '2': '1235',
