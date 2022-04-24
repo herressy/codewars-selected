@@ -15,7 +15,6 @@
 
 
 def format_duration(seconds):
-
     if seconds == 0:
         return 'now'
 
@@ -38,6 +37,4 @@ def format_duration(seconds):
 
     if len(r) > 1:
         return ', '.join(r[:-1]) + ' and ' + r[-1]
-
-    else:
-        return ''.join([f'{final[x]} {x}' for x in final])
+    return ''.join([f'{final[x]} {x}' for x in final])

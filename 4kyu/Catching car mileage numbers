@@ -44,7 +44,7 @@ def awesome(x, awesome_phrases):
     return x in [str(i) for i in awesome_phrases]
 
 def is_interesting(number, awesome_phrases):
-    n           = str(number)
+    n = str(number)
     if number > 97:
         if number > 99 and any([zeros(n), sequence(n), palindrome(n), awesome(n, awesome_phrases)]):
             return 2

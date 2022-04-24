@@ -37,23 +37,22 @@ class User:
     def __init__(self):
         self.rank = (-8)
         self.progress = 0
+
     def inc_progress(self, level):
         assert -9 < level < 9 and level != 0
         prev = self.rank
-        if self.rank > 0:
-            if level < 0:
-                level += 1
-        elif self.rank < 0:
-            if level > 0:
-                level -= 1
+        if self.rank > 0 and level < 0:
+            level += 1
+        elif self.rank < 0 and level > 0:
+            level -= 1
         if level == self.rank:
             self.progress += 3
         elif level - self.rank == -1:
             self.progress += 1
         elif level - self.rank > 0:
-            self.progress += 10*((level - self.rank)**2)
+            self.progress += 10 * ((level - self.rank)**2)
         if self.progress >= 100:
-            self.rank += self.progress//100
+            self.rank += self.progress // 100
             self.progress %= 100
         if prev < 0 and self.rank >= 0:
             self.rank += 1

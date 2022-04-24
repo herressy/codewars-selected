@@ -35,9 +35,9 @@ def mix(s1, s2):
         c2 = s2.count(letter)
         if c1 > 1 or c2 > 1:
             if c1 == c2:
-                result.append((-2*(c1), 3, c1 * letter, '=:'))
+                result.append((-2 * (c1), 3, c1 * letter, '=:'))
             elif c1 > c2:
-                result.append((-2*(c1), 1, c1 * letter, '1:'))
+                result.append((-2 * (c1), 1, c1 * letter, '1:'))
             elif c1 < c2:
-                result.append((-2*(c2), 2, c2 * letter, '2:'))
+                result.append((-2 * (c2), 2, c2 * letter, '2:'))
     return '/'.join([f'{x[3]}{x[2]}' for x in sorted(result)])
